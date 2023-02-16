@@ -2,6 +2,10 @@ require('dotenv').config();
 require('express-async-errors');
 const express = require('express');
 const connectDB = require('./db/connect');
+
+const authRouter = require('./routes/auth');
+const jobsRouter = require('./routes/jobs');
+
 const notFoundError = require('./middlewares/notFound');
 const customErrorHandler = require('./middlewares/errorHandler');
 
@@ -10,9 +14,8 @@ const port = process.env.PORT || 3000;
 
 app.use(express.json());
 
-app.get('/', (req, res) => {
-  res.send('Hello World!');
-});
+app.use('/api/v1/auth', authRouter);
+app.use('/api/v1/jobs', jobsRouter);
 
 app.use(notFoundError);
 app.use(customErrorHandler);
