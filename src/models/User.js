@@ -36,7 +36,7 @@ userSchema.methods.createJWT = function () {
   return token;
 };
 
-userSchema.methods.createUserResponse = function () {
+userSchema.methods.formatUserResponse = function () {
   const user = this.toObject();
   delete user.__v;
   delete user.password;
