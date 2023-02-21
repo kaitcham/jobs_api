@@ -3,7 +3,8 @@ const { StatusCodes } = require('http-status-codes');
 
 const register = async (req, res) => {
   const user = await User.create({ ...req.body });
-  res.status(StatusCodes.CREATED).json({ user });
+  const formattedUser = user.formatUserResponse();
+  res.status(StatusCodes.CREATED).json({ user: formattedUser });
 };
 
 const login = async (req, res) => {
