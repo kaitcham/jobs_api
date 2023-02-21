@@ -36,6 +36,10 @@ userSchema.methods.createJWT = function () {
   return token;
 };
 
+userSchema.methods.checkPassword = async function (password) {
+  return await bcrypt.compare(password, this.password);
+};
+
 userSchema.methods.formatUserResponse = function () {
   const user = this.toObject();
   delete user.__v;
