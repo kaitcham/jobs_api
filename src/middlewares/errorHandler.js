@@ -13,6 +13,12 @@ const errorHandlerMiddleware = (err, req, res, next) => {
     });
   }
 
+  // Validation error
+  if (err.name === 'ValidationError') {
+    const message = Object.values(err.errors).map((val) => val.message);
+    return res.status(StatusCodes.BAD_REQUEST).json({ message });
+  }
+
   // return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ err });
   return res
     .status(customError.statusCode)
