@@ -19,6 +19,15 @@ const errorHandlerMiddleware = (err, req, res, next) => {
     return res.status(StatusCodes.BAD_REQUEST).json({ message });
   }
 
+  // Duplicate key error
+  if (err.code && err.code === 11000) {
+    return res.status(StatusCodes.CONFLICT).json({
+      message: `${Object.keys(err.keyValue)}: ${Object.values(
+        err.keyValue
+      )} already exists`,
+    });
+  }
+
   // return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ err });
   return res
     .status(customError.statusCode)
