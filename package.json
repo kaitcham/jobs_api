@@ -19,7 +19,8 @@
     "helmet": "^6.0.1",
     "http-status-codes": "^2.2.0",
     "jsonwebtoken": "^9.0.0",
-    "mongoose": "^6.9.1"
+    "mongoose": "^6.9.1",
+    "xss-clean": "^0.1.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.20"
